@@ -1,0 +1,29 @@
+export interface PersonaSoap {
+  cedula?: string;
+  nombreCompleto?: string;
+  primerNombre?: string;
+  segundoNombre?: string;
+  apellidoPaterno?: string;
+  apellidoMaterno?: string;
+  fechaFallecimiento?: string;
+  fechaInscripcionDefuncion?: string;
+  fechaNacimiento?: string;
+  calle?: string;
+  condicionCedulado?: string;
+  conyuge?: string;
+  domicilio?: string;
+  estadoCivil?: string;
+  fechaCedulacion?: string;
+  fechaInscripcionGenero?: string;
+  genero?: string;
+  instruccion?: string;
+  lugarInscripcionGenero?: string;
+  lugarNacimiento?: string;
+  nui?: string;
+  nacionalidad?: string;
+  nombreMadre?: string;
+  nombrePadre?: string;
+  numeroCasa?: string;
+  profesion?: string;
+  sexo?: string;
+}

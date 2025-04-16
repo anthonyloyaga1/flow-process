@@ -1,0 +1,48 @@
+services:
+  ejecution:
+    build:
+      context: './'
+    container_name: rac-api-build
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - .env:/app/.env
+      - /var/log/nginx:/var/log/nginx
+      - ${ARCHIVE_ROUTE_SERVER}:${ARCHIVE_ROUTE_DOCKER}
+    networks:
+      - proyectos_ms_rac
+    command: bash -c "pm2-runtime start pm2.json --env development"
+    restart: unless-stopped
+  rac-api:
+    image: nginx:1.25.4-alpine
+    container_name: rac-api
+    ports:
+      - '${PORT_EXT}:80'
+    environment:
+      - PORT=${API_PORT}
+      - TZ=${TZ}
+    networks:
+      - proyectos_ms_rac
+    depends_on:
+      - ejecution
+    volumes:
+      - ./conf.d/nginx.conf:/etc/nginx/nginx.conf
+      - ./conf.d/default.conf:/etc/nginx/templates/default.conf.template
+      - /var/log/nginx:/var/log/nginx
+    restart: unless-stopped
+  rac-api-local:
+    image: node:20.10.0
+    container_name: rac-api-local
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./:/app
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - '${PORT_EXT}:${API_PORT}'
+    restart: unless-stopped
+    command: bash -c "cd /app && ./start.local.sh api-gateway ms-decease"
+networks:
+  proyectos_ms_rac:
+    name: proyectos_ms_rac
