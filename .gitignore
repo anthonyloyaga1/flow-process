@@ -60,3 +60,7 @@ pnpm-debug.log*
 # Misc
 .DS_Store
 *.pem
+
+
+# Ignorar directorios unit-test-report
+unit-test-report/

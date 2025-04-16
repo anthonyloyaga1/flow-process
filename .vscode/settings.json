@@ -3,5 +3,32 @@
     {
       "mode": "auto"
     }
-  ]
+  ],
+  "jest.runMode": "on-demand",
+  "jest.virtualFolders": [
+    {"name": "api", "rootPath": "apps/api"},
+    {"name": "web", "rootPath": "apps/web"},
+    {"name": "ms-reports", "rootPath": "apps/ms-reports"},
+    {"name": "ms-reports-rmq", "rootPath": "apps/ms-reports-rmq"}
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#607a85",
+    "activityBar.background": "#607a85",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#cab5c3",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#607a85",
+    "statusBar.background": "#4b5f67",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#607a85",
+    "statusBarItem.remoteBackground": "#4b5f67",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#4b5f67",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#4b5f6799",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#4b5f67"
 }
