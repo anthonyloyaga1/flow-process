@@ -14,7 +14,7 @@ export class ProcessActions {
     process.currentStageId = currentStage.nextStageId;
     process.latestStageDate = ProcessLatestStageDate.now();
 
-    process.apply(new ProcessStageChangedEvent(process.id.getValue(), previousStageId, currentStage.nextStageId));
+    process.apply(new ProcessStageChangedEvent({ id: process.id.getValue(), previousStageId, newStageId: currentStage.nextStageId }));
   }
 
   static returnToPreviousStage(process: Process, currentStage: Stage, returnStage: Stage): void {
@@ -22,9 +22,10 @@ export class ProcessActions {
       throw new CannotReturnToStageException(returnStage.name);
     }
 
+    const previousStageId = process.currentStageId;
     process.currentStageId = returnStage.id;
     process.latestStageDate = ProcessLatestStageDate.now();
 
-    process.apply(new ProcessStageChangedEvent(process.id.getValue(), currentStage.id, returnStage.id));
+    process.apply(new ProcessStageChangedEvent({ id: process.id.getValue(), previousStageId, newStageId: returnStage.id }));
   }
 }

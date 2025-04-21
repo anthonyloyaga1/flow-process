@@ -62,4 +62,25 @@ export class ProcessFactory {
       currentStageId: process.currentStageId,
     };
   }
+
+  static toPrimitives(process: Partial<Process>): ProcessPrimitives {
+    return {
+      id: process.id.getValue(),
+      registrationDate: process.registrationDate.getValue(),
+      entryNumber: process.entryNumber.getValue(),
+      catastrophic: process.catastrophic,
+      fileCount: process.fileCount,
+      serviceMonth: process.serviceMonth,
+      serviceYear: process.serviceYear,
+      excelFile: process.excelFile,
+      serviceType: process.serviceType,
+      boxNumber: process.boxNumber,
+      providerId: process.providerId,
+      currentStageId: process.currentStageId,
+      requestedAmount: process.requestedAmount.getValue(),
+      processNumber: process.processNumber.getValue(),
+      documentReceptionDate: process.documentReceptionDate.getValue(),
+      latestStageDate: process.latestStageDate.getValue(),
+    };
+  }
 }

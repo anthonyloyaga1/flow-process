@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
+import { ProcessFactory } from '../../../domain/entities/process-factory';
 import { Process } from '../../../domain/entities/process.model';
 import { EntryNumberEnum } from '../../../domain/enums/entry-number.enum';
 import { ProcessRepository } from '../../../domain/repositories/process.repository';
-import { ProcessFactory } from '../../../domain/entities/process-factory';
 
 @Injectable()
 export class InMemoryProcessRepository implements ProcessRepository {
@@ -72,12 +72,14 @@ export class InMemoryProcessRepository implements ProcessRepository {
     if (!existingProcess) {
       return Promise.reject(new Error('Process not found'));
     }
+    // Serializar el proceso existente a un objeto plano
+    const serializedProcess = ProcessFactory.toPrimitives(existingProcess);
+    const serializedUpdatedProcess = ProcessFactory.toPrimitives(updatedProcess);
 
-    // Crear una nueva instancia de Process con las propiedades combinadas
-    const mergedProcess = new Process({
-      ...existingProcess,
-      ...updatedProcess,
-    });
+    // Combinar las propiedades actualizadas con el proceso serializado
+    const mergedProcessData = { ...serializedProcess, ...serializedUpdatedProcess };
+
+    const mergedProcess = ProcessFactory.fromPrimitives(mergedProcessData);
 
     this.processes.set(id, mergedProcess);
     return Promise.resolve();

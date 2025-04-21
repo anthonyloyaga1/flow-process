@@ -1,8 +1,9 @@
+import { EVENT_BUS } from '@common/domain/event-bus';
+import { NestEventBus } from '@common/infraestructure/event-bus/nest-event-bus.service';
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 
 import { ProviderModule } from '../provider/provider.module';
-// import { ProcessAppMapper } from './application/mappers/process.mapper';
 import { ProcessFinder } from './application/services/process-finder.service';
 import { StageFinder } from './application/services/stage-finder.service';
 import { AdvanceProcessStage } from './application/use-cases/advance-process-stage';
@@ -23,7 +24,6 @@ import { InMemoryStageRepository } from './infraestructure/persistence/repositor
   providers: [
     ProcessFinder,
     StageFinder,
-    // ProcessAppMapper,
     CreateProcess,
     AdvanceProcessStage,
     ReturnProcessStage,
@@ -38,6 +38,11 @@ import { InMemoryStageRepository } from './infraestructure/persistence/repositor
     },
     ProcessCreatedHandler,
     ProcessStageChangedHandler,
+
+    {
+      provide: EVENT_BUS,
+      useClass: NestEventBus,
+    },
   ],
 })
 export class ProcessModule {}

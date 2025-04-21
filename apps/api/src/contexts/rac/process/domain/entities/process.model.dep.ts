@@ -1,4 +1,4 @@
-import { AggregateRoot } from '@common/domain/agreggate-root';
+import { AggregateRoot } from '@nestjs/cqrs';
 
 import { ProcessProps } from '../types/process.type';
 import { ProcessDocumentReceptionDate } from '../value-objects/process-document-reception-date.to';
