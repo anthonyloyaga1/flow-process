@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-import { DomainException, ValidationException } from '../../errors/domain-errors';
+import { DomainException, ValidationException } from '../../../contexts/common/domain/exceptions/domain-errors';
 
 export class DomainExceptionMapper {
   static toHttpException(error: Error): HttpException {

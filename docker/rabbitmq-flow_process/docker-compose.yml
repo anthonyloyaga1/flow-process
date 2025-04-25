@@ -1,0 +1,12 @@
+services:
+  rabbitmq_with_plugin:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: rabbitmq_with_plugin
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin

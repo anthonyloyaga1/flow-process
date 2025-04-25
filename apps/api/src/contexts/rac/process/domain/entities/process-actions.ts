@@ -7,9 +7,8 @@ import { Stage } from './stage.model';
 
 export class ProcessActions {
   static advanceToNextStage(process: Process, currentStage: Stage): void {
-    if (!currentStage.canAdvance()) {
-      throw new CannotAdvanceToStageException(currentStage.name);
-    }
+    if (!currentStage.canAdvance()) throw new CannotAdvanceToStageException(currentStage.name);
+
     const previousStageId = process.currentStageId;
     process.currentStageId = currentStage.nextStageId;
     process.latestStageDate = ProcessLatestStageDate.now();
@@ -18,9 +17,7 @@ export class ProcessActions {
   }
 
   static returnToPreviousStage(process: Process, currentStage: Stage, returnStage: Stage): void {
-    if (!currentStage.canReturnTo(returnStage.id)) {
-      throw new CannotReturnToStageException(returnStage.name);
-    }
+    if (!currentStage.canReturnTo(returnStage.id)) throw new CannotReturnToStageException(returnStage.name);
 
     const previousStageId = process.currentStageId;
     process.currentStageId = returnStage.id;

@@ -1,4 +1,4 @@
-import { DomainException } from '@errors/domain-errors';
+import { DomainException } from '@common/domain/exceptions/domain-errors';
 
 export class CannotAdvanceToStageException extends DomainException {
   constructor(nextStageName: string) {

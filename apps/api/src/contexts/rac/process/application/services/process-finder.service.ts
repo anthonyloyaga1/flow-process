@@ -9,9 +9,8 @@ export class ProcessFinder {
 
   async findById(id: string): Promise<Process> {
     const process = await this.processRepository.findById(id);
-    if (!process) {
-      throw new NotFoundException(`Process with ID ${id} not found`);
-    }
+    if (!process) throw new NotFoundException(`Process with ID ${id} not found`);
+
     return process;
   }
 

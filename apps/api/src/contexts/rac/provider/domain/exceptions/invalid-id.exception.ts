@@ -1,4 +1,4 @@
-import { ValidationException } from '@errors/domain-errors';
+import { ValidationException } from '@common/domain/exceptions/domain-errors';
 
 export class InvalidIdException extends ValidationException {
   constructor(id: string) {

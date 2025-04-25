@@ -1,4 +1,4 @@
-import { DomainException, ValidationException } from '@errors/domain-errors';
+import { DomainException, ValidationException } from '@common/domain/exceptions/domain-errors';
 import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { PinoLogger } from 'nestjs-pino';

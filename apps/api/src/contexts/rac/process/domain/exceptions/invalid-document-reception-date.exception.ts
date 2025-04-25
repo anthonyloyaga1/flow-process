@@ -1,4 +1,4 @@
-import { ValidationException } from '@errors/domain-errors';
+import { ValidationException } from '@common/domain/exceptions/domain-errors';
 
 export class InvalidDocumentReceptionDateException extends ValidationException {
   constructor() {

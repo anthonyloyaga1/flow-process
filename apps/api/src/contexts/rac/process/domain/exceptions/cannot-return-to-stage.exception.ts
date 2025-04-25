@@ -1,4 +1,4 @@
-import { DomainException } from '@errors/domain-errors';
+import { DomainException } from '@common/domain/exceptions/domain-errors';
 
 export class CannotReturnToStageException extends DomainException {
   constructor(returnStageName: string) {
