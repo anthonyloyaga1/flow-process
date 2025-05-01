@@ -23,6 +23,7 @@ import { HttpExceptionFilter } from './shared/middleware/filters/http-exception.
 import { RemoveNullsInterceptor } from './shared/middleware/interceptors/remove-nulls.interceptor';
 import { SuccessResponseInterceptor } from './shared/middleware/interceptors/success-response.interceptor';
 import { RequestIdMiddleware } from './shared/middleware/request-id.middleware';
+import { ProcessStageHistoryModule } from './contexts/rac/process-stage-history/process-stage-history.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { RequestIdMiddleware } from './shared/middleware/request-id.middleware';
     ReportsModule,
     ProcessModule,
     ProviderModule,
+    ProcessStageHistoryModule,
   ],
   providers: [
     AppService,

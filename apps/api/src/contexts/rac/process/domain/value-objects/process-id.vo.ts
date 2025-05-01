@@ -1,4 +1,3 @@
-// src/domain/value-objects/ProcessId.ts
 import { v4 as uuidv4 } from 'uuid';
 
 import { InvalidProcessIdException } from '../exceptions/invalid-process-id.exception';

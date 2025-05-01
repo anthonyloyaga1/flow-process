@@ -29,21 +29,6 @@ async function bootstrap() {
 
   initSwagger(app);
 
-  // const microserviceRabbit = app.connectMicroservice<MicroserviceOptions>({
-  //   strategy: new AmqpTransport({
-  //     url: 'amqp://admin:admin@localhost:5672',
-  //     autoCreate: false,
-  //     bindingKeys: ['process.created', 'process.stage.changed'],
-  //     queue: 'process_events',
-  //     exchange: 'flow_process.exchange',
-  //     exchangeType: ExchangeType.TOPIC,
-  //     avoidNoHandlerError: false,
-  //   }),
-  // });
-  // microserviceRabbit.useGlobalPipes(validationCustomConfig);
-  // microserviceRabbit.useLogger(app.get(LoggerPino));
-  // microserviceRabbit.useGlobalFilters(new LoggingGlobalFilter());
-
   app.connectMicroservice<RmqOptions>({
     transport: Transport.RMQ,
     options: {
@@ -52,7 +37,7 @@ async function bootstrap() {
       queueOptions: {
         durable: true,
         deadLetterExchange: 'flow_process.dlx',
-        deadLetterRoutingKey: 'retry',
+        deadLetterRoutingKey: 'process.retry',
         wildcards: true,
       },
       noAck: false,
@@ -83,7 +68,6 @@ class CustomSerializer implements Serializer {
 class CustomDeserializer implements Deserializer {
   deserialize(value: any): any {
     if (value?.pattern) return value;
-
     return { data: value, pattern: value.eventName };
   }
 }
